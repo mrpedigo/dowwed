@@ -1,0 +1,15 @@
+{
+  "short_name": "dowwed",
+  "name": "dowwed.com by matt pedigo",
+  "icons": [
+    {
+      "src": "img/favicon/Android/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.php",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
+

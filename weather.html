@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="manifest.json">
+  <title>dowwed.com by matt pedigo</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <!-- Fluent Design Bootstrap -->
+  <link rel="stylesheet" href="./css/fluent.css">
+  <!-- Micon icons-->
+  <link rel="stylesheet" href="./css/micon.min.css">
+  <!-- Style -->
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Additional Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono" rel="stylesheet"> 
+	<!-- Icons -->
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/iOS/Icon-57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/iOS/Icon-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/iOS/Icon-72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/iOS/Icon-144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/iOS/Icon-60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/iOS/Icon-120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/iOS/Icon-76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/iOS/Icon-152.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="1024x1024" href="img/favicon/iOS/Icon-1024.png" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-192.png" sizes="192x192" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-36.png" sizes="36x36" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-144.png" sizes="144x144" />
+</head>
+<body>
+<!-- Navbar -->
+	<div class="bg-info">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-info container">
+					<a class="navbar-brand" href="#">
+							<span class="d-inline-block align-top ml-2" id="logo">dowwed</span>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbar">
+							<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+									<a class="nav-link" href="/">Home
+									<span class="sr-only">(current)</span>
+									</a>
+							</li>
+							<li class="nav-item">
+									<a class="nav-link" href="weather.html">Weather</a>
+							</li>
+							<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									News
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="news.html">Your News</a>
+											<a class="dropdown-item" href="sources.html">Sources</a>
+											<a class="dropdown-item red-text text-accent-3" href="#" style="color: #FF0000;">Or browse by category:</a>
+											<a class="dropdown-item" href="category.html?category=technology">Technology News</a>
+											<a class="dropdown-item" href="category.html?category=business">Business News</a>
+											<a class="dropdown-item" href="category.html?category=entertainment">Entertainment News</a>
+											<a class="dropdown-item" href="category.html?category=general">General News</a>
+											<a class="dropdown-item" href="category.html?category=health">Health News</a>
+											<a class="dropdown-item" href="category.html?category=science">Science News</a>
+											<a class="dropdown-item" href="category.html?category=sports">Sports News</a>
+									</div>
+							</li>
+							</ul>
+									<div class="md-form my-0">
+											<input id="search" class="form-control mr-sm-2 w-75 d-inline" type="text" placeholder="Search News" aria-label="Search">
+											<button id="searchsubmit" type="button" class="btn btn-info" style="margin-top: -1px;"><i class="mi mi-ChevronRight" style="margin: 0 -5px;"></i></button>
+									</div>
+					</div>
+			</nav>
+	</div>
+<!-- Navbar -->
+
+
+<div class="container">
+  <h1 id="location" class="pt-3 pb-3"></h1>
+  <div id="alerts"></div>
+  <div id="current" class="pb-3"></div>
+  <div class="row" id="forecast">
+    <div class="d-flex justify-content-center w-100">
+      <div class="progress-cover progress-cover-primary" id="loader" style="height: 400px;">
+        <div class="progress progress-medium fluent-position">
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="weathermodal" tabindex="-1" role="dialog" aria-labelledby="weathermodal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modaltitle">Weather Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Temperature</h5>
+        <p id="temperature"></p>
+        <h5>Wind</h5>
+        <p id="wind"></p>
+        <h5>Detailed Forecast</h5>
+        <p id="detailedforecast"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small bg-info">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 text-white-50">© 2018 Copyright:
+    <a href="https://pedigo.co" class="text-white"> Matt Pedigo</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+<!-- /Start your project here-->
+<!-- Scripts -->
+<!-- JQuery -->
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="./js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<!-- News and search -->
+<script type="text/javascript" src="./js/config.js?v=1"></script>
+<script type="text/javascript" src="./js/news.js?v=4"></script>
+</html>
+
+<script>
+navigator.geolocation.getCurrentPosition(function(location) {
+  var latitude = location.coords.latitude;
+  var longitude = location.coords.longitude;
+  /* $.getJSON("https://api.weather.gov/points/" + latitude + "," + longitude, function(data, status){
+        $("#location").html("Weather for " + data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state);
+        $.getJSON("https://api.weather.gov/stations/" + data.properties.radarStation, function (data, status){
+            $("#current").append('<h3>Current Conditions at ' + data.properties.name + '</h3>');
+            $.getJSON("https://api.weather.gov/stations/" + data.properties.stationIdentifier + "/observations/current", function (data, status){
+                $("#current").append('<table class="table table-borderless"><tbody><tr><td class="p-0" style="width: 134px;"><img src="' + data.properties.icon + '&size=large" /></td><td>' + data.properties.textDescription + "<br />" + "<h4>" + Math.round(data.properties.temperature.value * 9 / 5 + 35) + '&deg;F</h4>' + Math.round(data.properties.temperature.value) + '&deg;C</td></tr></tbody></table>');
+            });
+        });
+  }); */
+  $.getJSON("https://api.weather.gov/points/" + latitude + "," + longitude, function(data, status){
+        $("#location").html("Weather for " + data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state);
+  });
+  $.getJSON("https://api.weather.gov/points/" + latitude + "," + longitude +  "/forecast/hourly", function (data, status) {
+	console.log(data);
+	$("#current").append('<h3>Current Conditions</h3>');
+	$("#current").append('<table class="table table-borderless"><tbody><tr><td class="p-0" style="width: 134px;"><img src="' + data.properties.periods[0].icon + '&size=large" /></td><td>' + data.properties.periods[0].shortForecast + "<br />" + "<h4>" + Math.round(data.properties.periods[0].temperature) + '&deg;F</h4>' + Math.round((data.properties.periods[0].temperature - 32) / 1.8) + '&deg;C <br />Wind: ' + data.properties.periods[0].windDirection + ' at '  + data.properties.periods[0].windSpeed + '</td></tr></tbody></table>');
+  });
+  $.getJSON("https://api.weather.gov/alerts?active=1&point=" + latitude + "," + longitude, function(data, status){
+        var i;
+        for(i=0; i < data.features.length; i++) {
+          $("#alerts").append('<div class="alert alert-danger" role="alert">' + data.features[i].properties.description + '</div>');
+        }
+  });
+  $.getJSON("https://api.weather.gov/points/" + latitude + "," + longitude + "/forecast", function(data, status){
+        for(i=0; data.properties.periods[i]; i++) {
+          $("#forecast").append('<div class="col-sm-12 col-md-4" style="padding-bottom: 30px;"><div class="card shadow" style="max-height: 360px;"><div class="py-3 w-100 steel-blue"></div><div class="position-relative h-100"><div class="h-50 w-100 steel-blue position-absolute text-white text-center"></div><div class="w-50 mx-auto position-relative "><img class="card-img-top shadow" src="' + data.properties.periods[i].icon + '&size=large" alt="Card image"></div></div><div class="card-body text-center"><h5 class="card-title pt-2 pb-0 mb-2">' + data.properties.periods[i].name + '</h5><p class="card-text">  ' + data.properties.periods[i].shortForecast + '. <a href="#" onclick="getDetails(' + latitude + ', ' + longitude + ', ' + i + ')" data-toggle="modal" data-target="#weathermodal">More Details...</a></p></div></div>');
+        };
+        $(".progress-cover").hide();
+        $(".progress-cover").css({'height' : '0px'});
+  });
+  $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB3DM0z1mlibTQU5dUERdz96eyyAGWZCU0&latlng=" + latitude + "," + longitude + "&sensor=true", function(data, status){       
+  });
+});
+
+function getDetails(latitude, longitude, i) {
+    $.getJSON("https://api.weather.gov/points/" + latitude + "," + longitude + "/forecast", function(data, status){
+        $("#modaltitle").html(data.properties.periods[i].name);
+        $("#temperature").html(data.properties.periods[i].temperature + " &deg;" + data.properties.periods[i].temperatureUnit);
+        $("#wind").html(data.properties.periods[i].windDirection + " at " + data.properties.periods[i].windSpeed);
+        $("#detailedforecast").html(data.properties.periods[i].detailedForecast);
+    });
+};
+
+</script>

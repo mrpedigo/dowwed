@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="manifest.json">
+  <title>dowwed.com by matt pedigo</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <!-- Fluent Design Bootstrap -->
+  <link rel="stylesheet" href="./css/fluent.css">
+  <!-- Micon icons-->
+  <link rel="stylesheet" href="./css/micon.min.css">
+  <!-- Style -->
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Additional Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono" rel="stylesheet"> 
+	<!-- Icons -->
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/iOS/Icon-57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/iOS/Icon-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/iOS/Icon-72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/iOS/Icon-144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/iOS/Icon-60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/iOS/Icon-120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/iOS/Icon-76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/iOS/Icon-152.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="1024x1024" href="img/favicon/iOS/Icon-1024.png" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-192.png" sizes="192x192" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-36.png" sizes="36x36" />
+	<link rel="icon" type="image/png" href="img/favicon/Android/Icon-144.png" sizes="144x144" />
+</head>
+<body>
+<!-- Navbar -->
+	<div class="bg-info">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-info container">
+					<a class="navbar-brand" href="#">
+							<span class="d-inline-block align-top ml-2" id="logo">dowwed</span>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbar">
+							<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+									<a class="nav-link" href="/">Home
+									<span class="sr-only">(current)</span>
+									</a>
+							</li>
+							<li class="nav-item">
+									<a class="nav-link" href="weather.html">Weather</a>
+							</li>
+							<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									News
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="news.html">Your News</a>
+											<a class="dropdown-item" href="sources.html">Sources</a>
+											<a class="dropdown-item red-text text-accent-3" href="#" style="color: #FF0000;">Or browse by category:</a>
+											<a class="dropdown-item" href="category.html?category=technology">Technology News</a>
+											<a class="dropdown-item" href="category.html?category=business">Business News</a>
+											<a class="dropdown-item" href="category.html?category=entertainment">Entertainment News</a>
+											<a class="dropdown-item" href="category.html?category=general">General News</a>
+											<a class="dropdown-item" href="category.html?category=health">Health News</a>
+											<a class="dropdown-item" href="category.html?category=science">Science News</a>
+											<a class="dropdown-item" href="category.html?category=sports">Sports News</a>
+									</div>
+							</li>
+							</ul>
+									<div class="md-form my-0">
+											<input id="search" class="form-control mr-sm-2 w-75 d-inline" type="text" placeholder="Search News" aria-label="Search">
+											<button id="searchsubmit" type="button" class="btn btn-info" style="margin-top: -1px;"><i class="mi mi-ChevronRight" style="margin: 0 -5px;"></i></button>
+									</div>
+					</div>
+			</nav>
+	</div>
+<!-- Navbar -->
+
+<div class="container">
+  <div class="row">
+    <h1 class="p-3">News Search</h1>
+    <div class="dropdown" style="padding-top: 12px;">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Sort By
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" onclick="getSearch('relevancy'); $('#dropdownMenuButton').html('Relevancy');">Relevancy</a>
+        <a class="dropdown-item" href="#" onclick="getSearch('popularity'); $('#dropdownMenuButton').html('Popularity');">Popularity</a>
+        <a class="dropdown-item" href="#" onclick="getSearch('publishedAt'); $('#dropdownMenuButton').html('Newest');">Newest</a>
+      </div>
+    </div>
+  </div>
+  <div id="newslist">
+    <div class="d-flex justify-content-center w-100">
+      <div class="progress-cover progress-cover-primary" id="loader" style="height: 400px;">
+        <div class="progress progress-medium fluent-position">
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+          <span class="progress-span"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small bg-info">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 text-white-50">© 2018 Copyright:
+    <a href="https://pedigo.co" class="text-white"> Matt Pedigo</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+<!-- /Start your project here-->
+<!-- Scripts -->
+<!-- JQuery -->
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="./js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<!-- News and search -->
+<script type="text/javascript" src="./js/config.js?v=1"></script>
+<script type="text/javascript" src="./js/news.js?v=4"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+	getSearch("relevancy");
+});
+</script>
+</html>
